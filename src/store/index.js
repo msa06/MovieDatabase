@@ -6,17 +6,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    APIURL:"http://www.omdbapi.com/?apikey=5978b258&s",
+    APIURL:"http://www.omdbapi.com/?apikey=5978b258",
     searchItem:"",
-    results:[
-    ]
+    results:[],
+    selectedMovieDetail: []
   },
   getters:{
     fetchResult:state=>{
       return state.results;
     },
-    fetchSearchItem:state=>{
-      return state.searchItem;
+    fetchSelectedMovie:state=>{
+      return state.selectedMovieDetail
     }
   },
   mutations: {
@@ -25,21 +25,31 @@ export default new Vuex.Store({
     },
     SET_RESULT:(state,results)=>{
       state.results = results
+    },
+    SET_SELECTEDMOVIE:(state,movie)=>{
+      state.selectedMovieDetail = movie
     }
   },
   actions: {
     fetchAPIResponse(context){
       // console.log(context.state.APIURL,context.state.searchItem);
-      axios.get(context.state.APIURL+"="+context.state.searchItem)
+      axios.get(context.state.APIURL+"&s="+context.state.searchItem)
       .then(res=>{
         context.commit('SET_RESULT',res.data.Search)
-        console.log(res.data.Search)
+        // console.log(res.data.Search)
       })
       .catch(err => {
         console.log(err);
       })
-    
+    },
+    fetchMovieDetails(context,key){
+      axios.get(context.state.APIURL+"&i="+key)
+      .then(res=>{
+        context.commit('SET_SELECTEDMOVIE',res.data);
+        // console.log(res.data);
+      })
     }
+
   },
   modules: {
   }

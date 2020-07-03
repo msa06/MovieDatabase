@@ -1,11 +1,7 @@
 <template>
   <div class="home">
     <div class="container">
-  <div class="row">
-    <div class="col-12">
-        <MovieDatabase/>
-    </div>
-  </div>
+  
   <div class="row">
     <div class="col-12">
       <Search/>

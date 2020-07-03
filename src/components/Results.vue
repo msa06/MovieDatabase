@@ -3,7 +3,8 @@
         <div class="cards">
         
         <div class="card my-3" style="width: 18rem;" v-for="movie in fetchResult" v-bind:key="movie.imdbID">
-                <router-link to="/about"><MovieCard v-bind:movie="movie" @click.prevent="clicked(movie.imdbId)"/></router-link>
+
+                <router-link :to="{name:'About',params:{movieId:movie.imdbID}}" @click.native="getMovie(movie.imdbID)"><MovieCard v-bind:movie="movie" /></router-link>
         </div>
         
         </div>
@@ -13,10 +14,15 @@
 <script>
 
 import { mapState } from 'vuex'
-import { mapGetters,mapActions } from 'vuex'
+import { mapGetters,mapActions,mapMutations } from 'vuex'
 import MovieCard from './MovieCard'
 export default {
     name:"Results",
+    data(){
+        return {
+            movieId:""
+        }
+    },
     components:{
         MovieCard
     },
@@ -27,8 +33,16 @@ export default {
         ]),
     },
     methods:{
-        clicked(key){
-            console.log('Clicked',key)
+        ...mapMutations([
+            'ADD_MOVIEID'
+        ]),
+        ...mapActions([
+            'fetchMovieDetails'
+        ]),
+        getMovie(key){
+            console.log("MovieId:",key)
+            
+            this.fetchMovieDetails(key);
         }
     }
 }
