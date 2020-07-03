@@ -1,10 +1,11 @@
 <template>
     <div>
         <div class="cards">
-        <div class="card my-3" style="width: 18rem;" v-for="result in fetchResult" v-bind:key="result.imdbID">
-            
-                <MovieCard v-bind:movie="result"/>
+        
+        <div class="card my-3" style="width: 18rem;" v-for="movie in fetchResult" v-bind:key="movie.imdbID">
+                <router-link to="/about"><MovieCard v-bind:movie="movie" @click.prevent="clicked(movie.imdbId)"/></router-link>
         </div>
+        
         </div>
     </div>
 </template>
@@ -24,6 +25,11 @@ export default {
             'fetchResult',
             'fetchSearchItem'
         ]),
+    },
+    methods:{
+        clicked(key){
+            console.log('Clicked',key)
+        }
     }
 }
 </script>
@@ -37,5 +43,9 @@ export default {
     }
     .card{
         margin:10px;
+        
+    }
+    router-link{
+        text-decoration: none;
     }
 </style>

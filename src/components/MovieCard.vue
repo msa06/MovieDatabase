@@ -1,6 +1,5 @@
 <template>
     <div>
-        
     <img class="card-img-top" :src="movie.Poster" alt="Card image cap">
     <div class="card-body">
         <p class="card-text">{{movie.Title}}</p>
@@ -11,7 +10,8 @@
 <script>
 export default {
     name:"MovieCard",
-    props:["movie"]
+    props:["movie"],
+
 }
 </script>
 
@@ -22,6 +22,6 @@ export default {
     }
     .card-body,.card-text{
         background:white;
-        color:black
+        color:black;
     }
 </style>

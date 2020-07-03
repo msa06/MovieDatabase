@@ -4,25 +4,9 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
-    <router-view/> -->
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-        <MovieDatabase/>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <Search/>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <Results/>
-    </div>
-  </div>
-</div>
+    </div>-->
+    <router-view/>
+
     
 
   </div>
